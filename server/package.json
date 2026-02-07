@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "server.mjs",
   "scripts": {
-    "dev": "nodemon server.mjs",
-    "start": "node server.mjs"
+    "dev": " server.mjs",
+    "start": "server.mjs"
   },
   "keywords": [],
   "author": "",
