@@ -24,6 +24,7 @@ export default function SystemStatusCard() {
         { cache: "no-store" },
       );
       const json = await res.json();
+      console.log("Fetched system status:", json.data);
       setData(json.data);
     } catch (err) {
       console.log(err);
