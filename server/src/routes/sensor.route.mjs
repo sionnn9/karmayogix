@@ -9,8 +9,8 @@ import {
 
 const router = Router();
 
-router.get("/getData", getAllSensors);
-router.get("/getData/:id", getSensorById);
+router.get("/", getAllSensors);
+router.get("/:id", getSensorById);
 router.post("/data", receiveSensorData);
 
 export default router;

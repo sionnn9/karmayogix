@@ -7,7 +7,7 @@ import { updateSensor } from "../services/sensor.service.mjs";
 import { sensors } from "../data/sensors.data.mjs";
 
 // Allowed sensors
-const ALLOWED_SENSORS = ["S1", "S2"];
+const ALLOWED_SENSORS = Object.keys(sensors);
 
 export const receiveSensorData = (req, res) => {
   try {
@@ -43,7 +43,7 @@ export const receiveSensorData = (req, res) => {
       );
     }
 
-    let levelLabel = "null";
+    let levelLabel = null;
     if (level <= 30) {
       levelLabel = "low";
     } else if (level <= 60) {
