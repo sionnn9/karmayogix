@@ -5,6 +5,7 @@ dotenv.config();
 import cors from "cors";
 import morgan from "morgan";
 import sensorRoute from "./routes/sensor.route.mjs";
+import systemRoutes from "./routes/system.route.mjs";
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api/sensors", sensorRoute);
+app.use("/api/system", systemRoutes);
 
 // Test route
 app.get("/try", (req, res) => {
