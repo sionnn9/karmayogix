@@ -74,3 +74,20 @@ export const getAllSensors = (req, res) => {
     return sendErrorResponse(res, 500, "Failed to fetch sensor data");
   }
 };
+
+export const getSensorById = (req, res) => {
+  try {
+    const { id } = req.params;
+    const sensor = sensors[id];
+    if (!sensor) {
+      return sendErrorResponse(res, 404, "Sensor not found");
+    }
+    return sendSuccessResponse(res, 200, "Sensor data fetched successfully", {
+      sensor,
+    });
+  } catch (err) {
+    console.error("Error fetching Sensor Data", err);
+
+    return sendErrorResponse(res, 500, "Failed to fetch sensor data");
+  }
+};
