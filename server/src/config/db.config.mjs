@@ -4,7 +4,10 @@ import mongoose from "mongoose";
 // Database connection function
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.DATABASE_URL);
+    console.log(process.env.DATABASE_URL);
+    await mongoose.connect(process.env.DATABASE_URL, {
+      dbName: "flowguard",
+    });
 
     console.log("MongoDB connected successfully");
   } catch (err) {
