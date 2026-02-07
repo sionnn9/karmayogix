@@ -36,19 +36,19 @@ export const sensors = {
   },
   S6: {
     sensorId: "S6",
-    waterLevel: 23,
+    waterLevel: 45,
     levelLabel: "low",
     lastUpdated: new Date(),
   },
   S7: {
     sensorId: "S7",
-    waterLevel: 89,
+    waterLevel: 45,
     levelLabel: "high",
     lastUpdated: new Date(),
   },
   S8: {
     sensorId: "S8",
-    waterLevel: 12,
+    waterLevel: 45,
     levelLabel: "low",
     lastUpdated: new Date(),
   },
@@ -60,7 +60,7 @@ export const sensors = {
   },
   S10: {
     sensorId: "S10",
-    waterLevel: 56,
+    waterLevel: 45,
     levelLabel: "medium",
     lastUpdated: new Date(),
   },
