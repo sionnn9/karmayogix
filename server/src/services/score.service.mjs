@@ -4,10 +4,11 @@
 import { sensors } from "../data/sensors.data.mjs";
 import { systemData } from "../data/system.data.mjs";
 import { sensorOrder } from "../data/sensorOrder.data.mjs";
+import { CLOG_DIFFERENCE_THRESHOLD } from "../utils/constants.util.mjs";
 
 export const calculateScore = () => {
   let maxDifference = 0;
-  let clogBetween = null;
+  const detectedClogs = [];
 
   for (let i = 0; i < sensorOrder.length - 1; i++) {
     const sA = sensors[sensorOrder[i]];
@@ -15,13 +16,18 @@ export const calculateScore = () => {
 
     const difference = Math.abs(sA.waterLevel - sB.waterLevel);
 
+    // Track max difference (for score)
     if (difference > maxDifference) {
       maxDifference = difference;
-      clogBetween = {
+    }
+
+    // Detect clog
+    if (difference >= CLOG_DIFFERENCE_THRESHOLD) {
+      detectedClogs.push({
         from: sA.sensorId,
         to: sB.sensorId,
         difference,
-      };
+      });
     }
   }
 
@@ -31,6 +37,6 @@ export const calculateScore = () => {
   systemData.status =
     score > 60 ? "CRITICAL" : score > 30 ? "WARNING" : "NORMAL";
 
-  systemData.clogLocation = clogBetween;
+  systemData.clogs = detectedClogs;
   systemData.lastUpdated = new Date();
 };
