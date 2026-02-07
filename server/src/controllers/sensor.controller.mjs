@@ -4,10 +4,12 @@ import {
   sendErrorResponse,
 } from "../utils/response.util.mjs";
 import { updateSensor } from "../services/sensor.service.mjs";
+import { sensors } from "../data/sensors.data.mjs";
 
 // Allowed sensors
-const ALLOWED_SENSORS = ["S1", "S2"];
+const ALLOWED_SENSORS = Object.keys(sensors);
 
+// Controller for handling sensor data updates and retrieval
 export const receiveSensorData = (req, res) => {
   try {
     const { sensorId, waterLevel } = req.body;
@@ -42,13 +44,53 @@ export const receiveSensorData = (req, res) => {
       );
     }
 
+    let levelLabel = null;
+    if (level <= 30) {
+      levelLabel = "low";
+    } else if (level <= 60) {
+      levelLabel = "medium";
+    } else {
+      levelLabel = "high";
+    }
+
     // update the sensor data
-    updateSensor(sensorId, level);
+    updateSensor(sensorId, level, levelLabel);
 
     return sendSuccessResponse(res, 200, "Sensor data updated successfully");
   } catch (err) {
-    console.error(err);
+    console.error("Error while receiving sensor data", err);
 
     return sendErrorResponse(res, 500, "Failed to update sensor data");
+  }
+};
+
+// Get all sensors data
+export const getAllSensors = (req, res) => {
+  try {
+    return sendSuccessResponse(res, 200, "Sensor data fetched successfully", {
+      sensors: Object.values(sensors),
+    });
+  } catch (err) {
+    console.error("Error fetching sensor data", err);
+
+    return sendErrorResponse(res, 500, "Failed to fetch sensor data");
+  }
+};
+
+// Get single sensor data by ID
+export const getSensorById = (req, res) => {
+  try {
+    const { id } = req.params;
+    const sensor = sensors[id];
+    if (!sensor) {
+      return sendErrorResponse(res, 404, "Sensor not found");
+    }
+    return sendSuccessResponse(res, 200, "Sensor data fetched successfully", {
+      sensor,
+    });
+  } catch (err) {
+    console.error("Error fetching Sensor Data", err);
+
+    return sendErrorResponse(res, 500, "Failed to fetch sensor data");
   }
 };
