@@ -11,7 +11,7 @@ import systemRoutes from "./routes/system.route.mjs";
 const app = express();
 
 const corsOptions = {
-  origin: [process.env.FRONTEND_DOMAIN, "http://localhost:3000"],
+  origin: [process.env.FRONTEND_DOMAIN, "*"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
