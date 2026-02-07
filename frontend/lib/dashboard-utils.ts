@@ -1,42 +1,42 @@
-import { Sensor } from './mock-data';
+import { Sensor } from "./mock-data";
 
-export function getRiskLevel(score: number): 'low' | 'medium' | 'high' {
-  if (score <= 30) return 'low';
-  if (score <= 60) return 'medium';
-  return 'high';
+export function getRiskLevel(score: number): "low" | "medium" | "high" {
+  if (score <= 30) return "low";
+  if (score <= 60) return "medium";
+  return "high";
 }
 
 export function getRiskColor(score: number): string {
   const level = getRiskLevel(score);
-  if (level === 'low') return 'green';
-  if (level === 'medium') return 'yellow';
-  return 'red';
+  if (level === "low") return "green";
+  if (level === "medium") return "yellow";
+  return "red";
 }
 
 export function getRiskBgColor(score: number): string {
   const level = getRiskLevel(score);
-  if (level === 'low') return 'bg-green-50';
-  if (level === 'medium') return 'bg-yellow-50';
-  return 'bg-red-50';
+  if (level === "low") return "bg-green-50";
+  if (level === "medium") return "bg-yellow-50";
+  return "bg-red-50";
 }
 
 export function getRiskBadgeClass(score: number): string {
   const level = getRiskLevel(score);
-  if (level === 'low') return 'bg-green-100 text-green-800';
-  if (level === 'medium') return 'bg-yellow-100 text-yellow-800';
-  return 'bg-red-100 text-red-800';
+  if (level === "low") return "bg-green-100 text-green-800";
+  if (level === "medium") return "bg-yellow-100 text-yellow-800";
+  return "bg-red-100 text-red-800";
 }
 
 export function getStatusColor(status: string): string {
-  if (status === 'online') return 'bg-green-500';
-  if (status === 'offline') return 'bg-red-500';
-  return 'bg-yellow-500';
+  if (status === "online") return "bg-green-500";
+  if (status === "offline") return "bg-red-500";
+  return "bg-yellow-500";
 }
 
 export function getAlertMessage(riskScore: number): string {
-  if (riskScore <= 30) return 'Normal flow';
-  if (riskScore <= 60) return 'Partial blockage';
-  return 'CRITICAL: Immediate attention';
+  if (riskScore <= 30) return "Normal flow";
+  if (riskScore <= 60) return "Partial blockage";
+  return "CRITICAL: Immediate attention";
 }
 
 export function formatDate(date: Date): string {
@@ -44,9 +44,9 @@ export function formatDate(date: Date): string {
 }
 
 export function formatTime(date: Date): string {
-  return date.toLocaleTimeString('en-US', {
-    hour: '2-digit',
-    minute: '2-digit',
+  return date.toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
   });
 }
 
@@ -64,11 +64,12 @@ export function getTimeSince(date: Date): string {
 }
 
 export function calculateSummaryStats(sensors: Sensor[]) {
-  const active = sensors.filter((s) => s.status === 'online').length;
-  const offline = sensors.filter((s) => s.status === 'offline').length;
+  const active = sensors.filter((s) => s.status === "online").length;
+  const offline = sensors.filter((s) => s.status === "offline").length;
   const highRisk = sensors.filter((s) => s.riskScore >= 61).length;
-  const mediumRisk = sensors.filter((s) => s.riskScore >= 31 && s.riskScore <= 60)
-    .length;
+  const mediumRisk = sensors.filter(
+    (s) => s.riskScore >= 31 && s.riskScore <= 60,
+  ).length;
   const lowRisk = sensors.filter((s) => s.riskScore <= 30).length;
 
   return {
@@ -85,22 +86,23 @@ export function filterSensors(
   sensors: Sensor[],
   riskFilter: string,
   statusFilter: string,
-  searchTerm: string
+  searchTerm: string,
 ): Sensor[] {
   let filtered = sensors;
 
   // Risk filter
-  if (riskFilter !== 'all') {
+  if (riskFilter !== "all") {
     filtered = filtered.filter((s) => {
-      if (riskFilter === 'high') return s.riskScore >= 61;
-      if (riskFilter === 'medium') return s.riskScore >= 31 && s.riskScore <= 60;
-      if (riskFilter === 'low') return s.riskScore <= 30;
+      if (riskFilter === "high") return s.riskScore >= 61;
+      if (riskFilter === "medium")
+        return s.riskScore >= 31 && s.riskScore <= 60;
+      if (riskFilter === "low") return s.riskScore <= 30;
       return true;
     });
   }
 
   // Status filter
-  if (statusFilter !== 'all') {
+  if (statusFilter !== "all") {
     filtered = filtered.filter((s) => s.status === statusFilter);
   }
 
@@ -112,7 +114,7 @@ export function filterSensors(
         s.id.toLowerCase().includes(term) ||
         s.location.toLowerCase().includes(term) ||
         s.area.toLowerCase().includes(term) ||
-        s.lane.toLowerCase().includes(term)
+        s.lane.toLowerCase().includes(term),
     );
   }
 
@@ -121,15 +123,15 @@ export function filterSensors(
 
 export function exportToCSV(sensors: Sensor[], alerts: any[]): string {
   const headers = [
-    'Sensor ID',
-    'Location',
-    'Area',
-    'Lane',
-    'Status',
-    'Risk Score',
-    'Water Level Difference',
-    'Blockage Estimate',
-    'Last Updated',
+    "Sensor ID",
+    "Location",
+    "Area",
+    "Lane",
+    "Status",
+    "Risk Score",
+    "Water Level Difference",
+    "Blockage Estimate",
+    "Last Updated",
   ];
 
   const rows = sensors.map((s) => [
@@ -145,9 +147,9 @@ export function exportToCSV(sensors: Sensor[], alerts: any[]): string {
   ]);
 
   const csvContent = [
-    headers.join(','),
-    ...rows.map((r) => r.map((v) => `"${v}"`).join(',')),
-  ].join('\n');
+    headers.join(","),
+    ...rows.map((r) => r.map((v) => `"${v}"`).join(",")),
+  ].join("\n");
 
   return csvContent;
 }

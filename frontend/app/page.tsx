@@ -135,9 +135,6 @@ export default function HomePage() {
               Smart Drainage Monitoring
             </h1>
           </div>
-          <Link href="/login">
-            <Button variant="outline">Sign In</Button>
-          </Link>
         </div>
       </nav>
 
@@ -154,7 +151,7 @@ export default function HomePage() {
               flooding caused by debris.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Link href="/login">
+              <Link href="/dashboard">
                 <Button
                   size="lg"
                   className="bg-blue-600 hover:bg-blue-700 h-14 px-8 rounded-xl shadow-lg"
