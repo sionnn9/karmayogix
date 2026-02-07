@@ -6,12 +6,12 @@ import http from "http";
 const server = http.createServer(app);
 
 const PORT = process.env.PORT;
-connectDB()
-  .then(() => {
-    server.listen(PORT, () => {
+() => {
+  server
+    .listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
+    })
+    .catch((err) => {
+      console.log("Server isn't running", err);
     });
-  })
-  .catch((error) => {
-    console.error("Failed to connect to the database:", error);
-  });
+};

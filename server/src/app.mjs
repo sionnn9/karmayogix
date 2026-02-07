@@ -2,7 +2,7 @@
 import express from "express";
 import cors from "cors";
 import morgan from "morgan";
-import cookieParser from "cookie-parser";
+import sensorRoute from "./routes/sensor.route.mjs";
 
 const app = express();
 
@@ -14,13 +14,14 @@ const corsOptions = {
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
 };
 console.log("CORS Origins:", process.env.CORS_ORIGIN);
+
 // Middleware
 app.use(cors(corsOptions));
 app.use(morgan("dev"));
 app.use(express.json());
-app.use(cookieParser());
 
 // Routes
+app.use("/api/sensors", sensorRoute);
 
 // Test route
 app.get("/try", (req, res) => {
