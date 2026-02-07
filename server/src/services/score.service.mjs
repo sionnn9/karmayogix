@@ -3,15 +3,34 @@
 
 import { sensors } from "../data/sensors.data.mjs";
 import { systemData } from "../data/system.data.mjs";
+import { sensorOrder } from "../data/sensorOrder.data.mjs";
 
 export const calculateScore = () => {
-  const s1 = sensors.S1.waterLevel;
-  const s2 = sensors.S2.waterLevel;
+  let maxDifference = 0;
+  let clogBetween = null;
 
-  const difference = Math.abs(s1 - s2);
-  const score = Math.min(difference, 100);
+  for (let i = 0; i < sensorOrder.length - 1; i++) {
+    const sA = sensors[sensorOrder[i]];
+    const sB = sensors[sensorOrder[i + 1]];
+
+    const difference = Math.abs(sA.waterLevel - sB.waterLevel);
+
+    if (difference > maxDifference) {
+      maxDifference = difference;
+      clogBetween = {
+        from: sA.sensorId,
+        to: sB.sensorId,
+        difference,
+      };
+    }
+  }
+
+  const score = Math.min(maxDifference, 100);
 
   systemData.riskScore = score;
   systemData.status =
     score > 60 ? "CRITICAL" : score > 30 ? "WARNING" : "NORMAL";
+
+  systemData.clogLocation = clogBetween;
+  systemData.lastUpdated = new Date();
 };
