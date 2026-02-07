@@ -30,7 +30,7 @@ export const receiveSensorData = (req, res) => {
     }
 
     // Water level type validation
-    const level = Number(waterLevel);
+    const level = 100 - Number(waterLevel);
     if (Number.isNaN(level)) {
       return sendErrorResponse(res, 400, "waterLevel must be a number");
     }
@@ -46,11 +46,11 @@ export const receiveSensorData = (req, res) => {
 
     let levelLabel = null;
     if (level <= 30) {
-      levelLabel = "high";
+      levelLabel = "low";
     } else if (level <= 60) {
       levelLabel = "medium";
     } else {
-      levelLabel = "low";
+      levelLabel = "high";
     }
 
     // update the sensor data
