@@ -1,22 +1,22 @@
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Sensor } from '@/lib/mock-data';
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Sensor } from "@/lib/mock-data";
 import {
   getRiskBadgeClass,
   getRiskLevel,
   getStatusColor,
   getTimeSince,
-} from '@/lib/dashboard-utils';
-import { TrendingUp } from 'lucide-react';
+} from "@/lib/dashboard-utils";
+import { TrendingUp } from "lucide-react";
 
 export function SensorCard({ sensor }: { sensor: Sensor }) {
   const riskLevel = getRiskLevel(sensor.riskScore);
   const riskLabel =
-    riskLevel === 'low'
-      ? 'Low Risk'
-      : riskLevel === 'medium'
-        ? 'Medium Risk'
-        : 'High Risk';
+    riskLevel === "low"
+      ? "Low Risk"
+      : riskLevel === "medium"
+        ? "Medium Risk"
+        : "High Risk";
 
   return (
     <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition">
@@ -41,7 +41,7 @@ export function SensorCard({ sensor }: { sensor: Sensor }) {
       {/* Location Info */}
       <div className="mb-4 text-sm">
         <p className="text-gray-600">
-          <span className="font-medium text-gray-900">{sensor.area}</span> •{' '}
+          <span className="font-medium text-gray-900">{sensor.area}</span> •{" "}
           {sensor.lane}
         </p>
         <p className="text-gray-500 text-xs mt-1">
@@ -60,10 +60,10 @@ export function SensorCard({ sensor }: { sensor: Sensor }) {
       <div
         className={`mb-4 p-3 rounded-lg text-sm ${
           sensor.riskScore >= 61
-            ? 'bg-red-50 text-red-900 border border-red-200'
+            ? "bg-red-50 text-red-900 border border-red-200"
             : sensor.riskScore >= 31
-              ? 'bg-yellow-50 text-yellow-900 border border-yellow-200'
-              : 'bg-green-50 text-green-900 border border-green-200'
+              ? "bg-yellow-50 text-yellow-900 border border-yellow-200"
+              : "bg-green-50 text-green-900 border border-green-200"
         }`}
       >
         {sensor.alertMessage}
@@ -72,9 +72,7 @@ export function SensorCard({ sensor }: { sensor: Sensor }) {
       {/* Trend Sparkline */}
       <div className="mb-4">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-xs font-medium text-gray-600">
-            7-Day Trend
-          </span>
+          <span className="text-xs font-medium text-gray-600">7-Day Trend</span>
           <TrendingUp className="w-3 h-3 text-gray-400" />
         </div>
         <div className="flex items-end gap-1 h-12">
@@ -84,7 +82,7 @@ export function SensorCard({ sensor }: { sensor: Sensor }) {
               className="flex-1 bg-blue-200 rounded-t"
               style={{
                 height: `${(value / 100) * 100}%`,
-                minHeight: '4px',
+                minHeight: "4px",
               }}
             />
           ))}
