@@ -56,7 +56,12 @@ export const receiveSensorData = (req, res) => {
     // update the sensor data
     updateSensor(sensorId, level, levelLabel);
 
-    return sendSuccessResponse(res, 200, "Sensor data updated successfully");
+    return sendSuccessResponse(
+      res,
+      200,
+      "Sensor data updated successfully",
+      sensors[sensorId],
+    );
   } catch (err) {
     console.error("Error while receiving sensor data", err);
 
