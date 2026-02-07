@@ -24,7 +24,7 @@ app.use(cookieParser());
 
 // Test route
 app.get("/try", (req, res) => {
-  res.json({ message: "Flow Gaurd API is running" });
+  res.json({ message: "FlowGaurd API is running" });
 });
 
 export default app;
