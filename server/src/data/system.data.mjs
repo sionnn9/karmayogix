@@ -3,3 +3,5 @@ export const systemData = {
   status: "NORMAL",
   lastUpdated: null,
 };
+
+// normal, warning, critical

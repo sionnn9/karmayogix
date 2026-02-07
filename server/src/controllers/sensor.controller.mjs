@@ -43,8 +43,17 @@ export const receiveSensorData = (req, res) => {
       );
     }
 
+    let levelLabel = "null";
+    if (level <= 30) {
+      levelLabel = "low";
+    } else if (level <= 60) {
+      levelLabel = "medium";
+    } else {
+      levelLabel = "high";
+    }
+
     // update the sensor data
-    updateSensor(sensorId, level);
+    updateSensor(sensorId, level, levelLabel);
 
     return sendSuccessResponse(res, 200, "Sensor data updated successfully");
   } catch (err) {
