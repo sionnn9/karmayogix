@@ -14,7 +14,7 @@ export const calculateScore = () => {
     const sA = sensors[sensorOrder[i]];
     const sB = sensors[sensorOrder[i + 1]];
 
-    const difference = Math.abs(sA.waterLevel - sB.waterLevel);
+    const difference = sA.waterLevel - sB.waterLevel;
 
     // Track max difference (for score)
     if (difference > maxDifference) {

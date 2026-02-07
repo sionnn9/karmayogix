@@ -1,1 +1,1 @@
-export const CLOG_DIFFERENCE_THRESHOLD = 30;
+export const CLOG_DIFFERENCE_THRESHOLD = 50;
