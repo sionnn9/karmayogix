@@ -46,11 +46,11 @@ export const receiveSensorData = (req, res) => {
 
     let levelLabel = null;
     if (level <= 30) {
-      levelLabel = "low";
+      levelLabel = "high";
     } else if (level <= 60) {
       levelLabel = "medium";
     } else {
-      levelLabel = "high";
+      levelLabel = "low";
     }
 
     // update the sensor data
