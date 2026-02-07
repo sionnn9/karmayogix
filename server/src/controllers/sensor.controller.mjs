@@ -4,6 +4,7 @@ import {
   sendErrorResponse,
 } from "../utils/response.util.mjs";
 import { updateSensor } from "../services/sensor.service.mjs";
+import { sensors } from "../data/sensors.data.mjs";
 
 // Allowed sensors
 const ALLOWED_SENSORS = ["S1", "S2"];
