@@ -14,6 +14,46 @@ export const sensors = {
     waterLevel: 0,
     lastUpdated: null,
   },
+  S3: {
+    sensorId: "S3",
+    waterLevel: 67,
+    lastUpdated: new Date(),
+  },
+  S4: {
+    sensorId: "S4",
+    waterLevel: 78,
+    lastUpdated: new Date(),
+  },
+  S5: {
+    sensorId: "S5",
+    waterLevel: 45,
+    lastUpdated: new Date(),
+  },
+  S6: {
+    sensorId: "S6",
+    waterLevel: 23,
+    lastUpdated: new Date(),
+  },
+  S7: {
+    sensorId: "S7",
+    waterLevel: 89,
+    lastUpdated: new Date(),
+  },
+  S8: {
+    sensorId: "S8",
+    waterLevel: 12,
+    lastUpdated: new Date(),
+  },
+  S9: {
+    sensorId: "S9",
+    waterLevel: 34,
+    lastUpdated: new Date(),
+  },
+  S10: {
+    sensorId: "S10",
+    waterLevel: 56,
+    lastUpdated: new Date(),
+  },
 };
 
 export default sensors;
