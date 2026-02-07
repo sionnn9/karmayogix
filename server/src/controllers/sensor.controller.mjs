@@ -47,8 +47,20 @@ export const receiveSensorData = (req, res) => {
 
     return sendSuccessResponse(res, 200, "Sensor data updated successfully");
   } catch (err) {
-    console.error(err);
+    console.error("Error while receiving sensor data", err);
 
     return sendErrorResponse(res, 500, "Failed to update sensor data");
+  }
+};
+
+export const getAllSensors = (req, res) => {
+  try {
+    return sendSuccessResponse(res, 200, "Sensor data fetched successfully", {
+      sensors: Object.values(sensors),
+    });
+  } catch (err) {
+    console.error("Error fetching sensor data", err);
+
+    return sendErrorResponse(res, 500, "Failed to fetch sensor data");
   }
 };
