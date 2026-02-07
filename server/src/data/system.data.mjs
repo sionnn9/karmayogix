@@ -3,6 +3,7 @@
 export const systemData = {
   riskScore: 0,
   status: "NORMAL",
+  clogLocation: null,
   lastUpdated: null,
 };
 
