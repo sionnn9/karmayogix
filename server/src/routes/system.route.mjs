@@ -5,6 +5,6 @@ import { getSystemStatus } from "../controllers/system.controller.mjs";
 
 const router = Router();
 
-router.get("/", getSystemStatus);
+router.get("/status", getSystemStatus);
 
 export default router;
