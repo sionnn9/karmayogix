@@ -1,4 +1,5 @@
 // server/src/services/score.service.mjs
+
 // This service calculates the score based on the current sensor data
 
 import { sensors } from "../data/sensors.data.mjs";

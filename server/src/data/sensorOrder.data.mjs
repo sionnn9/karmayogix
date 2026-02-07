@@ -1,5 +1,7 @@
 // server/src/data/sensorOrder.data.mjs
 
+// This file defines the order of sensors for display and processing purposes.
+
 export const sensorOrder = [
   "S1",
   "S2",

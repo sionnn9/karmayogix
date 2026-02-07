@@ -9,6 +9,7 @@ import { sensors } from "../data/sensors.data.mjs";
 // Allowed sensors
 const ALLOWED_SENSORS = Object.keys(sensors);
 
+// Controller for handling sensor data updates and retrieval
 export const receiveSensorData = (req, res) => {
   try {
     const { sensorId, waterLevel } = req.body;
@@ -63,6 +64,7 @@ export const receiveSensorData = (req, res) => {
   }
 };
 
+// Get all sensors data
 export const getAllSensors = (req, res) => {
   try {
     return sendSuccessResponse(res, 200, "Sensor data fetched successfully", {
@@ -75,6 +77,7 @@ export const getAllSensors = (req, res) => {
   }
 };
 
+// Get single sensor data by ID
 export const getSensorById = (req, res) => {
   try {
     const { id } = req.params;

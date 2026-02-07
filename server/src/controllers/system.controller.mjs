@@ -1,3 +1,5 @@
+// server/src/controllers/system.controller.mjs
+
 import { sendSuccessResponse } from "../utils/response.util.mjs";
 import { systemData } from "../data/system.data.mjs";
 

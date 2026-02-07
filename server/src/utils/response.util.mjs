@@ -1,5 +1,7 @@
 // server/src/utils/response.util.mjs
 
+// Success and error response utilities for consistent API responses
+
 export const sendSuccessResponse = (res, statusCode, message, data = null) => {
   res.status(statusCode).json({
     success: true,
