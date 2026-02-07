@@ -16,7 +16,7 @@ const sensors = {
   },
 };
 
-module.exports = sensors;
+export default sensors;
 
 // This object lives in RAM
 // When Arduino sends data, we update this object
