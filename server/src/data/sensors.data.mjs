@@ -3,7 +3,7 @@
 
 // In-memory storage for sensor data
 
-const sensors = {
+export const sensors = {
   S1: {
     sensorId: "S1",
     waterLevel: 0,
