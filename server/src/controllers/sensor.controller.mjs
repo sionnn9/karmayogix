@@ -1,0 +1,54 @@
+// server/src/controllers/sensor.controller.mjs
+import {
+  sendSuccessResponse,
+  sendErrorResponse,
+} from "../utils/response.util.mjs";
+import { updateSensor } from "../services/sensor.service.mjs";
+
+// Allowed sensors
+const ALLOWED_SENSORS = ["S1", "S2"];
+
+export const receiveSensorData = (req, res) => {
+  try {
+    const { sensorId, waterLevel } = req.body;
+
+    // Validation for Arduino bugs
+    // Presence validation
+    if (!sensorId || waterLevel === undefined) {
+      return sendErrorResponse(
+        res,
+        400,
+        "sensorId and waterLevel are required",
+      );
+    }
+
+    // Sensor ID validation
+    if (!ALLOWED_SENSORS.includes(sensorId)) {
+      return sendErrorResponse(res, 400, "Invalid sensorId");
+    }
+
+    // Water level type validation
+    const level = Number(waterLevel);
+    if (Number.isNaN(level)) {
+      return sendErrorResponse(res, 400, "waterLevel must be a number");
+    }
+
+    // Water level range validation
+    if (level < 0 || level > 100) {
+      return sendErrorResponse(
+        res,
+        400,
+        "waterLevel must be between 0 and 100",
+      );
+    }
+
+    // update the sensor data
+    updateSensor(sensorId, level);
+
+    return sendSuccessResponse(res, 200, "Sensor data updated successfully");
+  } catch (err) {
+    console.error(err);
+
+    return sendErrorResponse(res, 500, "Failed to update sensor data");
+  }
+};
