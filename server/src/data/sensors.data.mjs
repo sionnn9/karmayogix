@@ -7,13 +7,13 @@ export const sensors = {
   S1: {
     sensorId: "S1",
     waterLevel: 0,
-    levelLabel: "null",
+    levelLabel: null,
     lastUpdated: null,
   },
   S2: {
     sensorId: "S2",
     waterLevel: 0,
-    levelLabel: "null",
+    levelLabel: null,
     lastUpdated: null,
   },
   S3: {
