@@ -49,7 +49,7 @@ export const sensors = {
   S8: {
     sensorId: "S8",
     waterLevel: 45,
-    levelLabel: "low",
+    levelLabel: "medium",
     lastUpdated: new Date(),
   },
   S9: {
