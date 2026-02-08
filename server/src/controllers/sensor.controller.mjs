@@ -44,8 +44,8 @@ export const receiveSensorData = (req, res) => {
       );
     }
 
-    let levelLabel = null;
-    if (level <= 30) {
+    let levelLabel = "null";
+    if (level <= 30 || level === 0) {
       levelLabel = "low";
     } else if (level <= 60) {
       levelLabel = "medium";
