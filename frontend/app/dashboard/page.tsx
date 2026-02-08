@@ -31,6 +31,8 @@ import {
   BarChart3,
 } from "lucide-react";
 import SystemStatusCard from "@/components/SystemStatusCard";
+import Chat from "../chat/page";
+import { ChatButton } from "@/components/chaticon";
 
 export default function DashboardPage() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -106,6 +108,7 @@ export default function DashboardPage() {
           </div>
         )}
       </div>
+      <ChatButton />
     </div>
   );
 }

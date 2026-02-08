@@ -46,10 +46,10 @@ export function SensorCard({ sensor }: { sensor: Sensor2 }) {
         <div
           className={
             (sensor.levelLabel === "low"
-              ? "bg-red-500 text-white"
+              ? "bg-green-500 text-white"
               : sensor.levelLabel === "medium"
                 ? "bg-yellow-500 text-white"
-                : "bg-green-500 text-white") +
+                : "bg-red-500 text-white") +
             " inline-block px-3 py-1 rounded-full text-sm font-medium"
           }
         >
