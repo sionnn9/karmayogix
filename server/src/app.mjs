@@ -7,7 +7,6 @@ import cors from "cors";
 import morgan from "morgan";
 import sensorRoute from "./routes/sensor.route.mjs";
 import systemRoutes from "./routes/system.route.mjs";
-import mistralRoute from "./routes/mistral.route.mjs";
 
 const app = express();
 
@@ -28,7 +27,6 @@ app.use(express.json());
 // Routes
 app.use("/api/sensors", sensorRoute);
 app.use("/api/system", systemRoutes);
-app.use("/api/mistral", mistralRoute);
 
 // Test route
 app.get("/try", (req, res) => {
